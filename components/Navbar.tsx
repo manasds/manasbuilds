@@ -17,7 +17,7 @@ const Navbar = () => {
         </div>
         <div className="text-white flex gap-4">
           <span>search</span>
-          <span>themetoggle</span>
+          <span>theme toggle</span>
         </div>
       </div>
     </div>
