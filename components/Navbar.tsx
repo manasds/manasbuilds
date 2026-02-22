@@ -14,7 +14,7 @@ const navlinks = [
   { title: "Pricing", href: "/pricing" },
 ];
 
-export const Navbar = () => {
+export default function Navbar(){
   return (
     <div className="border-b border-neutral-200 dark:border-neutral-800 relative">
       <Noise />
