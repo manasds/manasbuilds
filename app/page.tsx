@@ -1,5 +1,4 @@
 import { Hero } from "../components/hero";
-import { Noise } from "../components/noise";
 import Image from "next/image";
 
 export default function Home() {

@@ -5,7 +5,6 @@ import { Container } from "./container";
 import { Button } from "./ui/button";
 import { PanelLeft, X } from "lucide-react";
 import ModeToggle from "./mode-toggle" 
-import { Noise } from "./noise";
 import { CommandDialog } from "./ui/command";
 import {AnimatePresence, motion} from "motion/react"
 const navlinks = [
@@ -18,7 +17,6 @@ const navlinks = [
 export const Nav = () => {
   return (
     <div className="border-b border-neutral-200 dark:border-neutral-800 relative">
-      <Noise />
       <DesktopNavbar />
       <MobileNavbar />
     </div>
