@@ -6,7 +6,7 @@ import { Button } from "./ui/button";
 import { PanelLeft, X } from "lucide-react";
 import ModeToggle from "./mode-toggle" 
 import { Noise } from "./noise";
-import { CommandDialog } from "cmdk";
+import { CommandDialog } from "./ui/command";
 const navlinks = [
   { title: "Blog", href: "/blog" },
   { title: "Projects", href: "/projects" },
