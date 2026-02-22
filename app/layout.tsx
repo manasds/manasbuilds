@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Space_Mono } from "next/font/google";
 import "./globals.css";
 import {Nav} from "../components/nav";
 import { ThemeProvider } from "../providers/themeprovider";
+import { Noise } from "@/components/noise";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -41,7 +42,10 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Nav />
-          <main className="bg-background text-foreground">{children}</main>
+          <main className="bg-background text-foreground">
+            <Noise />
+            {children}
+            </main>
         </ThemeProvider>
       </body>
     </html>

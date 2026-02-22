@@ -1,8 +1,9 @@
+import { cn } from '@/lib/utils'
 import React from 'react'
 
-export const Noise = () => {
+export const Noise = ({className} : {className? : string}) => {
   return (
-    <div className="absolute inset-0 z-10">
+    <div className={cn("fixed pointer-events-none inset-0 z-0", className)}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="100%"
