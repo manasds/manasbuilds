@@ -1,5 +1,5 @@
-import { Container } from '@/components/container'
-import { Noise } from '@/components/noise'
+import { Container } from '../../components/container'
+import { Noise } from '../../components/noise'
 import React from 'react'
 
 export default function Home() {
