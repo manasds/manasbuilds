@@ -30,6 +30,7 @@ export const DesktopNavbar = () => {
       <div className="flex items-center gap-4">
         {navlinks.map((link) => (
           <Link
+            key={link.title}
             className="text-sm text-neutral-600 dark:text-neutral-400 font-medium"
             href={link.href}
           >
