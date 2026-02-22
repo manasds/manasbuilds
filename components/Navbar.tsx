@@ -1,27 +1,46 @@
+"use client";
 import Link from "next/link";
-import { navbarConfig } from "@/config/Navbar";
-const Navbar = () => {
+import React, { useState } from "react";
+import { Container } from "./container";
+import { Button } from "./ui/button";
+import { PanelLeft, X } from "lucide-react";
+import ModeToggle from "./mode-toggle" 
+import { Noise } from "./noise";
+import { CommandDialog } from "cmdk";
+const navlinks = [
+  { title: "Blog", href: "/blog" },
+  { title: "Projects", href: "/projects" },
+  { title: "Contact", href: "/contaxt" },
+  { title: "Pricing", href: "/pricing" },
+];
+
+export const Navbar = () => {
   return (
-    <div className="animate-fade-in-blur mx-auto max-w-3xl px-4 h-16 sticky top-0 z-20 rounded-md backdrop-blur-sm">
-      <div className="flex justify-between items-center px-6 h-full">
-        <div className="h-full flex items-baseline-last gap-4">
-          {navbarConfig.navItems.map((item) => (
-            <Link
-              className="text-white font-semibold tracking-wide transition-all duration-300 ease-in-out hover:underline hover:decoration-2 hover:underline-offset-4"
-              key={item.label}
-              href={item.href}
-            >
-              {item.label}
-            </Link>
-          ))}
-        </div>
-        <div className="text-white flex gap-4">
-          <span>search</span>
-          <span>theme toggle</span>
-        </div>
-      </div>
+    <div className="border-b border-neutral-200 dark:border-neutral-800 relative">
+      <Noise />
+      <DesktopNavbar />
     </div>
   );
 };
 
-export default Navbar;
+export const DesktopNavbar = () => {
+  return (
+    <Container className="py-4 items-center justify-between hidden lg:flex relative z-20">
+      <Link href="https://manasbuilds.me">Manas</Link>
+      <div className="flex items-center gap-4">
+        {navlinks.map((link) => (
+          <Link
+            className="text-sm text-neutral-600 dark:text-neutral-400 font-medium"
+            href={link.href}
+          >
+            {link.title}
+          </Link>
+        ))}
+      </div>
+      <div className="flex items-center gap-4">
+        <CommandDialog />
+        <ModeToggle />
+      </div>
+    </Container>
+  );
+}
