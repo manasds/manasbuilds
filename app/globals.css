@@ -125,3 +125,71 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer base {
+  .prose {
+    max-width: 65ch;
+    line-height: 1.7;
+    font-size: 0.9rem;
+  }
+
+  .prose h1,
+  .prose h2,
+  .prose h3,
+  .prose h4 {
+    font-weight: 600;
+    letter-spacing: -0.03em;
+  }
+
+  .prose h1 {
+    font-size: 1.9rem;
+    margin-top: 1.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .prose h2 {
+    font-size: 1.4rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .prose h3 {
+    font-size: 1.15rem;
+    margin-top: 1.25rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .prose p,
+  .prose ul,
+  .prose ol,
+  .prose pre,
+  .prose blockquote {
+    margin-top: 0.8rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .prose a {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+  }
+
+  .prose code {
+    padding: 0.15rem 0.3rem;
+    border-radius: 0.25rem;
+  }
+
+  .prose pre {
+    padding: 0.9rem 1rem;
+    border-radius: 0.75rem;
+    overflow-x: auto;
+  }
+
+  .dark .prose {
+    color: var(--foreground);
+  }
+
+  .dark .prose a {
+    color: var(--primary);
+  }
+}

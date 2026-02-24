@@ -26,7 +26,7 @@ export const MobileNavbar = () => {
   const [open, setopen] = useState(false);
   return (
     <div className="flex md:hidden py-2 px-4 justify-between relative items-center z-20">
-      <div className="size-4 rounded-full flex justify-center items-center">M</div>
+      <Link href={"/"} className="size-4 rounded-full flex justify-center items-center">M</Link>
       <div className="flex gap-2">
         <ModeToggle />
         <button onClick={() => setopen(!open)}>
