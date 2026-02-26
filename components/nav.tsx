@@ -4,9 +4,9 @@ import React, { useState } from "react";
 import { Container } from "./container";
 import { Button } from "./ui/button";
 import { PanelLeft, X } from "lucide-react";
-import ModeToggle from "./mode-toggle" 
+import ModeToggle from "./mode-toggle";
 import { CommandDialog } from "./ui/command";
-import {AnimatePresence, motion} from "motion/react"
+import { AnimatePresence, motion } from "motion/react";
 const navlinks = [
   { title: "Blog", href: "/blog" },
   { title: "Projects", href: "/projects" },
@@ -26,7 +26,12 @@ export const MobileNavbar = () => {
   const [open, setopen] = useState(false);
   return (
     <div className="flex md:hidden py-2 px-4 justify-between relative items-center z-20">
-      <Link href={"/"} className="size-4 rounded-full flex justify-center items-center">M</Link>
+      <Link
+        href={"/"}
+        className="size-4 rounded-full flex justify-center items-center"
+      >
+        M
+      </Link>
       <div className="flex gap-2">
         <ModeToggle />
         <button onClick={() => setopen(!open)}>
@@ -40,11 +45,9 @@ export const MobileNavbar = () => {
             initial={{ opacity: 0 }}
             animate={{
               opacity: 1,
-              
             }}
             exit={{
               opacity: 0,
-             
             }}
             transition={{
               duration: 0.2,
@@ -52,8 +55,14 @@ export const MobileNavbar = () => {
           >
             <div>
               <div className="flex w-full py-2 items-center justify-between px-4">
-              {/* this classname is applied to logo svg and not whole logo with title  */}
-                <div className="size-4 rounded-full flex justify-center items-center">M</div>
+                {/* this classname is applied to logo svg and not whole logo with title  */}
+                <Link
+                  href="https://manasbuilds.me"
+                  onClick={() => setopen(false)}
+                  className="size-4 rounded-full flex justify-center items-center"
+                >
+                  M
+                </Link>
                 <button onClick={() => setopen(false)}>
                   <X className="h-8 dark:text-white " />
                 </button>
@@ -78,7 +87,7 @@ export const MobileNavbar = () => {
                       href={link.href}
                       onClick={() => setopen(false)}
                     >
-                    {link.title}
+                      {link.title}
                     </Link>
                   </motion.div>
                 ))}
@@ -121,4 +130,4 @@ export const DesktopNavbar = () => {
       </div>
     </Container>
   );
-}
+};
