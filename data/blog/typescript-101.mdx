@@ -1,0 +1,49 @@
+When I started learning TypeScript, I used to be very confused.
+
+If it’s JavaScript that the browser understands, and type safety just goes away at runtime, then why even use it?
+
+But when I started creating projects, I realized what it was actually for.
+
+Imagine creating an object called `person` that has properties like:
+
+name , image , city 
+
+During development, you accidentally mistype `person.city` as `person.citi`
+
+JavaScript doesn’t complain. It just runs your code — and then _bam_ — it crashes, saying it can’t access the property of `undefined`.
+
+Now imagine you have a large codebase with many developers working on it.
+These kinds of mistakes are very common.
+
+And you definitely don’t want to push this type of code to production.
+
+So how do we solve this problem?
+
+Yeah, you guessed it right.
+
+We create some sort of **contract** where we define what a `Person` should look like — what properties it has and what their types are.
+
+For example:
+<div className="w-full bg-neutral-200/60 dark:bg-background rounded-lg">
+```ts
+type Person = {
+  name: string;
+  age: number;
+  city: string;
+};
+```
+</div>
+Now, if we create a `person` object like this:
+
+<div className="w-full bg-neutral-200/60 dark:bg-background rounded-lg">
+```ts
+const p1: Person = {
+  name: "alex",
+  age: 20,
+  city: "mumbai",
+};
+```
+</div>
+Anywhere in the code, when you use `p1` and try to access its properties, you’ll get autocomplete automatically.
+
+And if you make a typo or try to access a property that doesn’t exist, you’ll immediately see an error in your VS Code terminal — along with a red underline under that code.
