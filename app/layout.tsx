@@ -21,7 +21,19 @@ const spaceMono = Space_Mono({
 
 export const metadata: Metadata = {
   title: "Manas Builds",
-  description: "portfolio website for manas",
+  description: "Hey this is manas , I love learning about engineering and tech , and also building for it ",
+  openGraph: {
+    title: 'Manas | Full-Stack Developer',
+    description: 'Building modern, type-safe web applications.',
+    url: 'https://manasbuilds.me',
+    siteName: 'Manas Builds',
+    locale: 'en_US',
+    type: 'website',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
