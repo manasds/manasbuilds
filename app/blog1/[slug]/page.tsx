@@ -44,7 +44,7 @@ async function highlightCodeBlocks(body: unknown[]) {
                   (node.properties as Record<string, unknown> | undefined) ??
                   {};
                 delete props.style;
-                node.properties = props;
+                node.properties = props as typeof node.properties;
               },
             },
           ],
@@ -180,7 +180,9 @@ export default async function PostPage({
       <h1 className="text-4xl font-semibold">{post.title}</h1>
       {/* manas */}
       <div className="text-lg font-mono">
-        <p className="text-xs mt-4 mb-16">Published: {new Date(post.publishedAt).toLocaleDateString()}</p>
+        <p className="text-xs mt-4 mb-16">
+          Published: {new Date(post.publishedAt).toLocaleDateString()}
+        </p>
         {Array.isArray(post.body) && (
           <PortableText
             value={bodyWithHighlight}
