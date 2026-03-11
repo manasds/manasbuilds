@@ -4,7 +4,8 @@ import { MetadataRoute } from "next";
 export default async function sitemap() : Promise<MetadataRoute.Sitemap> {
 	const baseUrl = "https://manasbuilds.me";
 
-	const posts = getAllPosts();
+	const posts = 
+	getAllPosts();
 	const latestBlogDate = posts.length
 		? new Date(
 				Math.max(
