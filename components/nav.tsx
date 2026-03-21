@@ -113,7 +113,7 @@ export const DesktopNavbar = () => {
   return (
     <Container className="py-4 items-center justify-between hidden lg:flex relative z-20">
       <Link href="https://manasbuilds.me">Manas</Link>
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-4 px-6 py-2">
         {navlinks.map((link) => (
           <Link
             key={link.title}
