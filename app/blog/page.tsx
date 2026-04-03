@@ -4,6 +4,7 @@ import { type SanityDocument } from "next-sanity";
 import { client } from "@/sanity/client";
 import { Container } from "@/components/container";
 import { Separator } from "@/components/ui/separator";
+import { ArrowRight } from "lucide-react";
 
 const POSTS_QUERY = `*[
   _type == "post"
@@ -27,27 +28,22 @@ export default async function IndexPage() {
 
         <section className="space-y-6">
           {posts.map((post) => (
-            <>
-              <article key={post._id} className="space-y-1">
-                <h2 className="text-lg font-medium">
-                  <Link
-                    href={`/blog/${post.slug.current}`}
-                    className="hover:underline underline-offset-4"
-                  >
+            <div className="py-4 border-b border-neutral-300 rounded-md">
+              <Link  href={`/blog/${post.slug.current}`}  key={post._id} className="space-y-1 ">
+                <h2 className="text-lg font-medium hover:underline underline-offset-4">
                     {post.title}
-                  </Link>
                 </h2>
-                <p className="text-sm text-neutral-300">{post.description}</p>
+                <p className="text-sm text-neutral-400">{post.description}</p>
                 <p className="text-xs text-neutral-500 dark:text-neutral-500">
                   {new Date(post.publishedAt).toLocaleDateString("en-US", {
                     month: "long",
                     day: "numeric",
                     year: "numeric",
                   })}
+                  
                 </p>
-              </article>
-              <Separator />
-            </>
+              </Link>
+            </div>
           ))}
 
           {posts.length === 0 && (
