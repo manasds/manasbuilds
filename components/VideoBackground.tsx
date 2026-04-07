@@ -4,8 +4,11 @@ import { useState, useEffect } from "react"
 
 export function VideoBackground() {
   const [isEnabled, setIsEnabled] = useState(false)
+  const [isDark, setIsDark] = useState(false)
 
   useEffect(() => {
+    setIsDark(document.documentElement.classList.contains("dark"))
+
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key.toLowerCase() === "s" && !e.ctrlKey && !e.metaKey) {
         setIsEnabled((prev) => !prev)
@@ -19,6 +22,9 @@ export function VideoBackground() {
     const observer = new MutationObserver(() => {
       if (document.documentElement.classList.contains("dark")) {
         setIsEnabled(false)
+        setIsDark(true)
+      } else {
+        setIsDark(false)
       }
     })
     observer.observe(document.documentElement, {
@@ -28,7 +34,6 @@ export function VideoBackground() {
     return () => observer.disconnect()
   }, [])
 
-  const isDark = document.documentElement.classList.contains("dark")
   const showVideo = isEnabled && !isDark
 
   if (!showVideo) return null
