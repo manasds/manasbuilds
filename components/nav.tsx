@@ -11,12 +11,12 @@ const navlinks = [
   { title: "Blog", href: "/blog" },
   { title: "Projects", href: "/projects" },
   { title: "Contact", href: "/contact" },
-  { title: "Pricing", href: "/pricing" },
+  { title: "learning", href: "/learning" },
 ];
 
 export const Nav = () => {
   return (
-    <div className="border-b border-neutral-200 dark:border-neutral-800 relative">
+    <div className="border-b border-neutral/20 dark:border-neutral/80 relative bg-background/50 backdrop-blur-sm">
       <DesktopNavbar />
       <MobileNavbar />
     </div>
