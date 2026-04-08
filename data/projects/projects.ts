@@ -8,7 +8,7 @@ export type projecttype = {
     src : string ; 
 }
 
-export const projects : [projecttype] = [
+export const projects : projecttype[] = [
     {
         id : 1 ,
         title : "quicknote" ,
@@ -16,5 +16,13 @@ export const projects : [projecttype] = [
         content : "take notes directly from browser to your obsidian vault" ,
         url : "https://github.com/manasds" ,
         src : "/images/bg8.png" 
+    } , 
+    {
+        id : 2 ,
+        title : "cursor" ,
+        status : "live" ,
+        content : "ai orchestrator that lives in your ide and has context of your codebase !!" ,
+        url : "https://cursor.com" ,
+        src : "/images/bg10.png"
     }
 ]

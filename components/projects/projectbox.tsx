@@ -9,7 +9,7 @@ import { projecttype } from "@/data/projects/projects";
 export const ProjectBox = ({id , title , status , content , url , src} : projecttype) => {
   
   return (
-    <div className="p-2 flex flex-col gap-1.5 max-w-84 group">
+    <a href={url} target="_blank" className="p-2 flex flex-col gap-1.5 max-w-84 group border-b border-dashed border-neutral-200 dark:border-neutral-700">
       <div className="h-52 border border-neutral-300 dark:border-neutral-700 rounded-md p-1">
         <div className="h-full w-full bg-neutral-200 dark:bg-zinc-800 border border-neutral-300 dark:border-neutral-700 rounded-sm overflow-hidden relative">
           <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -39,13 +39,11 @@ export const ProjectBox = ({id , title , status , content , url , src} : project
       <p className="text-sm text-gray-500 dark:text-gray-400 tracking-tight max-w-lg px-2 ">
        {content}
       </p>
-      <a
-        href={url}
-        target="_blank"
+      <span
         className="text-neutral-500 text-sm px-2 flex gap-1.5 items-center dark:text-neutral-400"
       >
         View Project <ArrowUpRight className="size-4" />
-      </a>
-    </div>
+      </span>
+    </a>
   );
 };

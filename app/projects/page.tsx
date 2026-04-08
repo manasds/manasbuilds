@@ -21,7 +21,7 @@ export default function Projects() {
   //         backgroundRepeat: "no-repeat",
   //       }}
       >
-        <div className="px-2 grid grid-cols-2 gap-6">
+        <div className="px-2 md:grid md:grid-cols-2 md:gap-6 flex flex-col ">
           {projects.map(p => 
             <ProjectBox title={p.title} status={p.status} content={p.content} id={p.id} url={p.url} src={p.src} />
           )}
