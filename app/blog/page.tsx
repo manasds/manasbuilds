@@ -5,6 +5,7 @@ import { client } from "@/sanity/client";
 import { Container } from "@/components/container";
 import { Separator } from "@/components/ui/separator";
 import { ArrowRight } from "lucide-react";
+import { DashedSeparator } from "@/components/dashed-separator";
 
 const POSTS_QUERY = `*[
   _type == "post"
@@ -26,10 +27,10 @@ export default async function IndexPage() {
           </p>
         </header>
 
-        <section className="space-y-6">
+        <section className="space-y-4">
           {posts.map((post) => (
-            <div className="py-4 border-b border-neutral-300 rounded-md">
-              <Link  href={`/blog/${post.slug.current}`}  key={post._id} className="space-y-1 ">
+            <div className="py-4 relative">
+              <Link  href={`/blog/${post.slug.current}`}  key={post._id} className="space-y-1">
                 <h2 className="text-lg font-medium hover:underline underline-offset-4">
                     {post.title}
                 </h2>
@@ -43,6 +44,7 @@ export default async function IndexPage() {
                   
                 </p>
               </Link>
+              <DashedSeparator dashWidth={16} gap={12} className="text-neutral-300 dark:text-neutral-600 absolute bottom-0 "  />
             </div>
           ))}
 

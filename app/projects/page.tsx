@@ -23,7 +23,7 @@ export default function Projects() {
       >
         <div className="px-2 md:grid md:grid-cols-2 md:gap-6 flex flex-col ">
           {projects.map(p => 
-            <ProjectBox title={p.title} status={p.status} content={p.content} id={p.id} url={p.url} src={p.src} />
+            <ProjectBox title={p.title} status={p.status} content={p.content} id={p.id} url={p.url} src={p.src} slug={p.slug} />
           )}
         </div>
       </Container>
