@@ -11,10 +11,10 @@ interface DashedSeparatorProps {
 export const DashedSeparator = ({
   dashWidth = 4,
   gap = 4,
-  className,
+  className = "text-neutral-300",
 }: DashedSeparatorProps) => {
   return (
-    <div className={cn("w-full h-[1px]", className)}>
+    <div className={cn("w-full h-px", className)}>
       <div
         className="w-full h-full"
         style={{

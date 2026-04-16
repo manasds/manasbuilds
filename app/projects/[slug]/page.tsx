@@ -1,3 +1,4 @@
+import { Container } from "@/components/container";
 import {projects} from "@/data/projects/projects";
 import { notFound } from "next/navigation";
 
@@ -14,10 +15,11 @@ export default async function ProjectPage({params} : {params : Promise<{slug : s
     }
 
   return (
-    <main className="p-10">
+    <div className="h-screen">
+      <Container>
       <h1 className="text-4xl font-bold">{project.title}</h1>
       <div className="mt-4 text-neutral-500">{project.content}</div>
-      {/* Your detailed project layout goes here */}
-    </main>
+      </Container>
+    </div>
   );
 }
