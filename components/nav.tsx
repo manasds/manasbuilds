@@ -57,7 +57,7 @@ export const MobileNavbar = () => {
               <div className="flex w-full py-2 items-center justify-between px-4">
                 {/* this classname is applied to logo svg and not whole logo with title  */}
                 <Link
-                  href="https://manasbuilds.me"
+                  href="/"
                   onClick={() => setopen(false)}
                   className="size-4 rounded-full flex justify-center items-center"
                 >
@@ -112,7 +112,7 @@ export const MobileNavbar = () => {
 export const DesktopNavbar = () => {
   return (
     <Container className="py-4 items-center justify-between hidden lg:flex relative z-20">
-      <Link href="https://manasbuilds.me">Manas</Link>
+      <Link href="/">Manas</Link>
       <div className="flex items-center gap-4 px-6 py-2">
         {navlinks.map((link) => (
           <Link
