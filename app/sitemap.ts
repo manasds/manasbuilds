@@ -6,7 +6,7 @@ import { SanityDocument } from "next-sanity";
 const POSTS_QUERY = `*[
   _type == "post"
   && defined(slug.current)
-]|order(publishedAt desc)[0...12]{_id, description, title, slug, publishedAt}`;
+]|order(publishedAt desc)[0...12]{_id, description, title, "slug": slug.current, publishedAt}`;
 
 const options = { next: { revalidate: 30 } };
 
@@ -57,7 +57,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const blogEntries = posts.map((post) => ({
     url: `${baseUrl}/blog/${post.slug}`,
-    lastModified: new Date(post._createdAt).toISOString(),
+    lastModified: new Date(post.publishedAt).toISOString(),
     changeFrequency: "yearly" as const,
     priority: 0.7,
   }));
