@@ -5,6 +5,6 @@ export type SocialLink = {
 
 export const socialLinks: SocialLink[] = [
   { name: "GitHub", href: "https://github.com/manasds" },
-  { name: "Twitter", href: "https://x.com/manasds" },
-  { name: "Cal.com", href: "https://cal.com/manasds" },
+  { name: "Twitter", href: "https://x.com/manastwts" },
+  { name: "Cal.com", href: "https://cal.com/manasdubey" },
 ];
