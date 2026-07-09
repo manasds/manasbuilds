@@ -21,4 +21,15 @@ export const projects : projecttype[] = [
         url : "https://github.com/manasds" ,
         src : "/images/bg8.png" 
     } ,
+    {
+        id : 2 ,
+        title : "flint" ,
+        slug : "flint" ,
+        date : "2026-07-09" ,
+        status : "live" ,
+        content : "this app enables p2p file sharing between two browsers without any server using webrtc" ,
+        url : "https://flint.manasbuilds.me" ,
+        github : "https://github.com/manasds/flint" ,
+        src : "/images/bg8.png" 
+    } ,
 ]
