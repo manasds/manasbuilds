@@ -21,4 +21,15 @@ export const projects : projecttype[] = [
         url : "https://github.com/manasds" ,
         src : "/images/bg8.png" 
     } ,
+    {
+        id : 2 ,
+        title : "flint" ,
+        slug : "flint" ,
+        date : "2026-07-09" ,
+        status : "building" ,
+        content : "spark ideas into shipped projects, fast" ,
+        url : "https://github.com/manasds/flint" ,
+        github : "https://github.com/manasds/flint" ,
+        src : "/images/bg8.png" 
+    } ,
 ]
