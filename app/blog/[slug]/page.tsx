@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { PortableText } from "next-sanity";
+import { PortableText, type PortableTextBlock } from "next-sanity";
 import { createImageUrlBuilder } from "@sanity/image-url";
 import type { SanityImageSource } from "@sanity/image-url";
 import { codeToHtml } from "shiki";
@@ -22,6 +22,10 @@ type SanityPost = {
   description?: string;
 };
 
+type PortableTextObject =
+  | PortableTextBlock
+  | ({ _type: string } & Record<string, unknown>);
+
 const { projectId, dataset } = client.config();
 const urlFor = (source: SanityImageSource) =>
   projectId && dataset
@@ -30,14 +34,18 @@ const urlFor = (source: SanityImageSource) =>
 
 const options = { next: { revalidate: 60 } };
 
-async function highlightCodeBlocks(body: unknown[]) {
+function isPortableTextObject(value: unknown): value is PortableTextObject {
+  return (
+    typeof value === "object" &&
+    value !== null &&
+    typeof (value as { _type?: unknown })._type === "string"
+  );
+}
+
+async function highlightCodeBlocks(body: PortableTextObject[]) {
   return Promise.all(
     body.map(async (block) => {
-      if (
-        typeof block === "object" &&
-        block !== null &&
-        (block as { _type?: string })._type === "code"
-      ) {
+      if (block._type === "code") {
         const { code, language } = block as {
           code?: string;
           language?: string;
@@ -62,7 +70,7 @@ async function highlightCodeBlocks(body: unknown[]) {
         });
 
         return {
-          ...(block as Record<string, unknown>),
+          ...block,
           highlightedCode: html,
         };
       }
@@ -179,7 +187,9 @@ export default async function PostPage({
     notFound();
   }
 
-  const body = Array.isArray(post.body) ? post.body : [];
+  const body = Array.isArray(post.body)
+    ? post.body.filter(isPortableTextObject)
+    : [];
   const bodyWithHighlight = await highlightCodeBlocks(body);
   const postImageUrl = post.image ? urlFor(post.image)?.url() : null;
   const title = post.title ?? "Untitled";
