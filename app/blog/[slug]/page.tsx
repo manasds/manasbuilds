@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { PortableText, type SanityDocument } from "next-sanity";
 import { createImageUrlBuilder } from "@sanity/image-url";
 import type { SanityImageSource } from "@sanity/image-url";
@@ -6,8 +7,12 @@ import { codeToHtml } from "shiki";
 import { client } from "@/sanity/client";
 import Link from "next/link";
 import { Container } from "@/components/container";
+import {
+  normalizeSlug,
+  POST_BY_SLUG_FILTER,
+} from "@/lib/sanity-slug";
 
-const POST_QUERY = `*[_type == "post" && slug.current == $slug][0]{
+const POST_QUERY = `*[${POST_BY_SLUG_FILTER}][0]{
   _id, title, slug, publishedAt, body, image, description
 }`;
 
@@ -106,7 +111,7 @@ export async function generateStaticParams() {
     {},
     options,
   );
-  return slugs.map((slug: string) => ({ slug }));
+  return slugs.map((slug: string) => ({ slug: normalizeSlug(slug) }));
 }
 
 export async function generateMetadata({
@@ -114,8 +119,13 @@ export async function generateMetadata({
 }: {
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
-  const { slug } = await params;
-  const post = await client.fetch(POST_QUERY, { slug }, options);
+  const { slug: rawSlug } = await params;
+  const slug = normalizeSlug(rawSlug);
+  const post = await client.fetch(
+    POST_QUERY,
+    { slug, slashSlug: `/${slug}` },
+    options,
+  );
 
   if (!post) return {};
 
@@ -152,11 +162,18 @@ export default async function PostPage({
 }: {
   params: Promise<{ slug: string }>;
 }) {
+  const { slug: rawSlug } = await params;
+  const slug = normalizeSlug(rawSlug);
   const post = await client.fetch<SanityDocument>(
     POST_QUERY,
-    await params,
+    { slug, slashSlug: `/${slug}` },
     options,
   );
+
+  if (!post) {
+    notFound();
+  }
+
   const bodyWithHighlight = Array.isArray(post.body)
     ? await highlightCodeBlocks(post.body)
     : post.body;

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { type SanityDocument } from "next-sanity";
 
 import { client } from "@/sanity/client";
+import { normalizeSlug } from "@/lib/sanity-slug";
 import { Container } from "@/components/container";
 import { Separator } from "@/components/ui/separator";
 import { ArrowRight } from "lucide-react";
@@ -30,7 +31,11 @@ export default async function IndexPage() {
         <section className="space-y-4">
           {posts.map((post) => (
             <div className="py-4 relative">
-              <Link  href={`/blog/${post.slug.current}`}  key={post._id} className="space-y-1">
+              <Link
+                href={`/blog/${normalizeSlug(post.slug.current)}`}
+                key={post._id}
+                className="space-y-1"
+              >
                 <h2 className="text-lg font-medium hover:underline underline-offset-4">
                     {post.title}
                 </h2>

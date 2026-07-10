@@ -1,5 +1,5 @@
-import { getAllPosts } from "@/lib/blog";
 import { client } from "@/sanity/client";
+import { normalizeSlug } from "@/lib/sanity-slug";
 import { MetadataRoute } from "next";
 import { SanityDocument } from "next-sanity";
 
@@ -56,7 +56,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   ];
 
   const blogEntries = posts.map((post) => ({
-    url: `${baseUrl}/blog/${post.slug}`,
+    url: `${baseUrl}/blog/${normalizeSlug(post.slug)}`,
     lastModified: new Date(post.publishedAt).toISOString(),
     changeFrequency: "yearly" as const,
     priority: 0.7,

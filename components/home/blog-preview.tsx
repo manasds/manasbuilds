@@ -3,6 +3,7 @@ import { type SanityDocument } from "next-sanity";
 import { DashedSeparator } from "@/components/dashed-separator";
 import { SectionHeader } from "@/components/home/section-header";
 import { client } from "@/sanity/client";
+import { normalizeSlug } from "@/lib/sanity-slug";
 
 const POSTS_QUERY = `*[
   _type == "post"
@@ -25,7 +26,7 @@ export async function BlogPreview() {
         {posts.map((post) => (
           <div key={post._id} className="py-4 relative">
             <Link
-              href={`/blog/${post.slug.current}`}
+              href={`/blog/${normalizeSlug(post.slug.current)}`}
               className="space-y-1 block"
             >
               <h3 className="text-lg font-medium hover:underline underline-offset-4">
