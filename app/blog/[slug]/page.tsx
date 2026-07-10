@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { PortableText, type SanityDocument } from "next-sanity";
+import { notFound } from "next/navigation";
+import { PortableText } from "next-sanity";
 import { createImageUrlBuilder } from "@sanity/image-url";
 import type { SanityImageSource } from "@sanity/image-url";
 import { codeToHtml } from "shiki";
@@ -10,6 +11,16 @@ import { Container } from "@/components/container";
 const POST_QUERY = `*[_type == "post" && slug.current == $slug][0]{
   _id, title, slug, publishedAt, body, image, description
 }`;
+
+type SanityPost = {
+  _id: string;
+  title?: string;
+  slug?: { current?: string };
+  publishedAt?: string;
+  body?: unknown[] | null;
+  image?: SanityImageSource | null;
+  description?: string;
+};
 
 const { projectId, dataset } = client.config();
 const urlFor = (source: SanityImageSource) =>
@@ -115,7 +126,11 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const post = await client.fetch(POST_QUERY, { slug }, options);
+  const post = await client.fetch<SanityPost | null>(
+    POST_QUERY,
+    { slug },
+    options,
+  );
 
   if (!post) return {};
 
@@ -126,12 +141,14 @@ export async function generateMetadata({
       `${baseUrl}/og-blog-default.png`)
     : `${baseUrl}/og-blog-default.png`;
 
+  const title = post.title ?? "Blog post";
+
   return {
-    title: post.title,
+    title,
     description: post.description,
     alternates: { canonical: url },
     openGraph: {
-      title: post.title,
+      title,
       description: post.description,
       type: "article",
       publishedTime: post.publishedAt,
@@ -140,7 +157,7 @@ export async function generateMetadata({
     },
     twitter: {
       card: "summary_large_image",
-      title: post.title,
+      title,
       description: post.description,
       images: [imageUrl],
     },
@@ -152,15 +169,23 @@ export default async function PostPage({
 }: {
   params: Promise<{ slug: string }>;
 }) {
-  const post = await client.fetch<SanityDocument>(
+  const post = await client.fetch<SanityPost | null>(
     POST_QUERY,
     await params,
     options,
   );
-  const bodyWithHighlight = Array.isArray(post.body)
-    ? await highlightCodeBlocks(post.body)
-    : post.body;
+
+  if (!post) {
+    notFound();
+  }
+
+  const body = Array.isArray(post.body) ? post.body : [];
+  const bodyWithHighlight = await highlightCodeBlocks(body);
   const postImageUrl = post.image ? urlFor(post.image)?.url() : null;
+  const title = post.title ?? "Untitled";
+  const publishedDate = post.publishedAt
+    ? new Date(post.publishedAt).toLocaleDateString()
+    : "Unpublished";
 
   return (
     <Container className="max-w-3xl ">
@@ -171,23 +196,29 @@ export default async function PostPage({
         <div className="flex items-center justify-center">
           <img
             src={postImageUrl}
-            alt={post.title}
+            alt={title}
             className="rounded-xl w-80 h-auto"
             style={{ maxWidth: "100%" }}
           />
         </div>
       )}
-      <h1 className="text-4xl font-semibold">{post.title}</h1>
-      {/* manas */}
-      <div className="text-lg font-mono">
-        <p className="text-xs mt-4 mb-16">
-          Published: {new Date(post.publishedAt).toLocaleDateString()}
+      <h1 className="text-4xl font-semibold">{title}</h1>
+      {post.description && (
+        <p className="mt-3 text-sm text-neutral-600 dark:text-neutral-400">
+          {post.description}
         </p>
-        {Array.isArray(post.body) && (
+      )}
+      <div className="text-lg font-mono">
+        <p className="text-xs mt-4 mb-16">Published: {publishedDate}</p>
+        {bodyWithHighlight.length > 0 ? (
           <PortableText
             value={bodyWithHighlight}
             components={portableTextComponents}
           />
+        ) : (
+          <p className="text-sm text-neutral-600 dark:text-neutral-400">
+            This post does not have any content yet.
+          </p>
         )}
       </div>
     </Container>
