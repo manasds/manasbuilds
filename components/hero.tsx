@@ -4,7 +4,7 @@ import { yap, tagline } from "@/lib/text";
 
 export const Hero = () => {
   return (
-    <Container className="relative z-10 pt-20 pb-16 md:pt-28 md:pb-20">
+    <Container className="relative z-10 pt-16 pb-16 md:pt-16 md:pb-20">
       <div className="max-w-2xl space-y-6">
         <div className="space-y-3">
           <p className="text-lg md:text-xl font-mono font-medium">{yap}</p>

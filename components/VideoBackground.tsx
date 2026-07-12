@@ -36,17 +36,29 @@ export function VideoBackground() {
 
   const showVideo = isEnabled && !isDark
 
-  if (!showVideo) return null
-
   return (
-    <video
-      autoPlay
-      loop
-      muted
-      playsInline
-      className="fixed top-0 left-0 w-full h-full object-cover object-top -z-50 opacity-60"
-    >
-      <source src="/leaves.mp4" type="video/mp4" />
-    </video>
+    <>
+      {!isDark && (
+        <div className="fixed top-8 left-4 z-50 flex items-center gap-1 text-xs font-mono text-gray-500 dark:text-gray-400 select-none pointer-events-none">
+          press
+          <kbd className="px-1.5 py-0.5 rounded border border-gray-400 dark:border-gray-600">
+            S
+          </kbd>
+          to change vibes
+        </div>
+      )}
+
+      {showVideo && (
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="fixed top-0 left-0 w-full h-full object-cover object-top -z-50 opacity-60"
+        >
+          <source src="/leaves.mp4" type="video/mp4" />
+        </video>
+      )}
+    </>
   )
 }

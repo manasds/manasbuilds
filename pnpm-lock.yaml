@@ -65,6 +65,9 @@ importers:
       react-dom:
         specifier: 19.2.3
         version: 19.2.3(react@19.2.3)
+      react-github-calendar:
+        specifier: ^5.0.6
+        version: 5.0.6(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       reading-time:
         specifier: ^1.5.0
         version: 1.5.0
@@ -1090,6 +1093,12 @@ packages:
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
+
+  '@floating-ui/react@0.27.19':
+    resolution: {integrity: sha512-31B8h5mm8YxotlE7/AU/PhNAl8eWxAmjL/v2QOxroDNkTFLk3Uu82u63N3b6TXa4EGJeeZLVcd/9AlNlVqzeog==}
+    peerDependencies:
+      react: '>=17.0.0'
+      react-dom: '>=17.0.0'
 
   '@floating-ui/utils@0.2.11':
     resolution: {integrity: sha512-RiB/yIh78pcIxl6lLMG0CgBXAZ2Y0eVHqMPYugu+9U0AeT6YBeiJpf7lbdJNIugFP5SIjwNRgo4DhR1Qxi26Gg==}
@@ -5371,6 +5380,11 @@ packages:
   raf@3.4.1:
     resolution: {integrity: sha512-Sq4CW4QhwOHE8ucn6J34MqtZCeWFP2aQSmrlroYgqAV1PjStIhJXxYuTgUIfkEk7zTLjmIjLmU5q+fbD1NnOJA==}
 
+  react-activity-calendar@3.2.1:
+    resolution: {integrity: sha512-FcdwCu7V0XzGfx3MNQ7qFuIA0IGnJ0yPu46jvDjfA33OlqIkcth096Mdpl1exR3HwLv2nbK2yJAKyBqdzk4DHw==}
+    peerDependencies:
+      react: ^18.0.0 || ^19.0.0
+
   react-clientside-effect@1.2.8:
     resolution: {integrity: sha512-ma2FePH0z3px2+WOu6h+YycZcEvFmmxIlAb62cF52bG86eMySciO/EQZeQMXd07kPCYB0a1dWDT5J+KE9mCDUw==}
     peerDependencies:
@@ -5402,6 +5416,11 @@ packages:
     peerDependenciesMeta:
       '@types/react':
         optional: true
+
+  react-github-calendar@5.0.6:
+    resolution: {integrity: sha512-BXgk1blzmkXjzc3CJRtSxscNuL0y/pHHVihmY+H+8bak0Syg2G/7gCM4Ja6CzE5wtABDv6N97kKSufWqMazq/g==}
+    peerDependencies:
+      react: ^18.0.0 || ^19.0.0
 
   react-i18next@17.0.8:
     resolution: {integrity: sha512-0ooKbGLU8JXhe1zwpQUWIeXSgLPOfwJmgheWRIUpcoA0CpyabpGhayjdG+/eA5esC1AQ8h2jWpXjJfzQzeDOCw==}
@@ -5882,6 +5901,9 @@ packages:
 
   symbol-tree@3.2.4:
     resolution: {integrity: sha512-9QNk5KwDF+Bvz+PyObkmSYjI5ksVUYtjW7AU22r2NKcfLJcXp96hkDWU3+XndOsUb+AQ9QhfzfCT2O+CNWT5Tw==}
+
+  tabbable@6.5.0:
+    resolution: {integrity: sha512-wieBHXygIm7OyQOu5hQlkk62/WyCFYGlWg7L6/ZCUZwx0o398Zkn4pVmMyfYhfMG8kGrj/Krt8eIk6UKC6VzwA==}
 
   tagged-tag@1.0.0:
     resolution: {integrity: sha512-yEFYrVhod+hdNyx7g5Bnkkb0G6si8HJurOoOEgC8B/O0uXLHlaey/65KRv6cuWBNhBgHKAROVpc7QyYqE5gFng==}
@@ -7508,6 +7530,14 @@ snapshots:
       '@floating-ui/dom': 1.7.6
       react: 19.2.3
       react-dom: 19.2.3(react@19.2.3)
+
+  '@floating-ui/react@0.27.19(react-dom@19.2.3(react@19.2.3))(react@19.2.3)':
+    dependencies:
+      '@floating-ui/react-dom': 2.1.8(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+      '@floating-ui/utils': 0.2.11
+      react: 19.2.3
+      react-dom: 19.2.3(react@19.2.3)
+      tabbable: 6.5.0
 
   '@floating-ui/utils@0.2.11': {}
 
@@ -12451,6 +12481,14 @@ snapshots:
     dependencies:
       performance-now: 2.1.0
 
+  react-activity-calendar@3.2.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3):
+    dependencies:
+      '@floating-ui/react': 0.27.19(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+      date-fns: 4.4.0
+      react: 19.2.3
+    transitivePeerDependencies:
+      - react-dom
+
   react-clientside-effect@1.2.8(react@19.2.3):
     dependencies:
       '@babel/runtime': 7.29.7
@@ -12483,6 +12521,13 @@ snapshots:
       use-sidecar: 1.1.3(@types/react@19.2.17)(react@19.2.3)
     optionalDependencies:
       '@types/react': 19.2.17
+
+  react-github-calendar@5.0.6(react-dom@19.2.3(react@19.2.3))(react@19.2.3):
+    dependencies:
+      react: 19.2.3
+      react-activity-calendar: 3.2.1(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
+    transitivePeerDependencies:
+      - react-dom
 
   react-i18next@17.0.8(i18next@26.3.4(typescript@5.9.3))(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(typescript@5.9.3):
     dependencies:
@@ -13184,6 +13229,8 @@ snapshots:
   supports-preserve-symlinks-flag@1.0.0: {}
 
   symbol-tree@3.2.4: {}
+
+  tabbable@6.5.0: {}
 
   tagged-tag@1.0.0: {}
 

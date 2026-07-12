@@ -55,12 +55,12 @@ export const ProjectBox = ({
         {content}
       </p>
       <div className="flex justify-between">
-        <span className="text-neutral-500 text-textsm px-2 flex gap-1.5 items-center dark:text-neutral-400">
+        <span className="text-neutral-500 text-sm px-2 flex gap-1.5 items-center dark:text-neutral-400">
           View Project <ArrowUpRight className="size-4" />
         </span>
         {status === "live" && (
           <a
-            className="text-neutral-500 text-textsm px-2 flex gap-1.5 items-center dark:text-neutral-400"
+            className="text-neutral-500 text-sm px-2 flex gap-1.5 items-center dark:text-neutral-400"
             href={url}
             target="_blank"
             onClick={(e) => e.stopPropagation()}
