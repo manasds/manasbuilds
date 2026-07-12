@@ -30,6 +30,6 @@ export const projects : projecttype[] = [
         content : "this app enables p2p file sharing between two browsers without any server using webrtc" ,
         url : "https://flint.manasbuilds.me" ,
         github : "https://github.com/manasds/flint" ,
-        src : "/images/bg8.png" 
+        src : "/images/bg2.jpg" 
     } ,
 ]

@@ -54,10 +54,27 @@ export const ProjectBox = ({
       <p className="text-sm text-gray-500 dark:text-gray-400 tracking-tight max-w-lg px-2 ">
         {content}
       </p>
-      <span className="text-neutral-500 text-sm px-2 flex gap-1.5 items-center dark:text-neutral-400">
-        View Project <ArrowUpRight className="size-4" />
-      </span>
-      <DashedSeparator className="text-neutral-300 dark:text-neutral-600 absolute bottom-0" dashWidth={8} gap={4} />
+      <div className="flex justify-between">
+        <span className="text-neutral-500 text-textsm px-2 flex gap-1.5 items-center dark:text-neutral-400">
+          View Project <ArrowUpRight className="size-4" />
+        </span>
+        {status === "live" && (
+          <a
+            className="text-neutral-500 text-textsm px-2 flex gap-1.5 items-center dark:text-neutral-400"
+            href={url}
+            target="_blank"
+            onClick={(e) => e.stopPropagation()}
+          >
+            View Live
+            <ArrowUpRight className="size-4" />
+          </a>
+        )}
+      </div>
+      <DashedSeparator
+        className="text-neutral-300 dark:text-neutral-600 absolute bottom-0"
+        dashWidth={8}
+        gap={4}
+      />
     </Link>
   );
 };
