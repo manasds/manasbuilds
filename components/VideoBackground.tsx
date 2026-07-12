@@ -1,10 +1,12 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import { useIsMobile } from "@/hooks/use-is-mobile"
 
 export function VideoBackground() {
   const [isEnabled, setIsEnabled] = useState(false)
   const [isDark, setIsDark] = useState(false)
+  const isMobile = useIsMobile()
 
   useEffect(() => {
     setIsDark(document.documentElement.classList.contains("dark"))
@@ -38,7 +40,7 @@ export function VideoBackground() {
 
   return (
     <>
-      {!isDark && (
+      {!isDark && !isMobile && (
         <div className="fixed top-8 left-4 z-50 flex items-center gap-1 text-xs font-mono text-gray-500 dark:text-gray-400 select-none pointer-events-none">
           press
           <kbd className="px-1.5 py-0.5 rounded border border-gray-400 dark:border-gray-600">
