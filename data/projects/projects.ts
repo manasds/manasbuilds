@@ -50,7 +50,7 @@ export const projects: projecttype[] = [
     slug: "image-resizer",
     date: "2026-07-12",
     status: "live",
-    content: "resize yoour images easily",
+    content: "resize yoour images easily now",
     url: "https://image-resize-md.vercel.app",
     github: "https://github.com/manasds/backend-stuff/src/job",
     src: "/images/bg3.avif",
