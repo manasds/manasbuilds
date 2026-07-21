@@ -8,6 +8,7 @@ export type projecttype = {
   url: string;
   github?: string;
   src: string;
+  images? : string[] ; 
 };
 // available images in the public/images folder
 const images = [
@@ -34,12 +35,11 @@ export const projects: projecttype[] = [
   },
   {
     id: 2,
-    title: "flint",
+    title: "Flint",
     slug: "flint",
     date: "2026-07-09",
     status: "live",
-    content:
-      "share files between two browsers without any server",
+    content: "nothing" , 
     url: "https://flint.manasbuilds.me",
     github: "https://github.com/manasds/flint",
     src: "/images/bg2.jpg",

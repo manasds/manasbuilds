@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <div className="min-h-screen font-mono relative">
       <Hero />
-      <Container className="relative z-10 pb-20 space-y-20">
+      <Container className="relative z-10 pb-20 space-y-20 pt-8">
         <ProjectsPreview />
         <BlogPreview />
       </Container>
