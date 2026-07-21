@@ -4,7 +4,7 @@ import { yap, tagline } from "@/lib/text";
 
 export const Hero = () => {
   return (
-    <Container className="relative z-10 overflow-hidden rounded-xl py-3 md:py-8">
+    <Container className="relative z-10 overflow-hidden lg:rounded-xl py-3 md:py-8">
       <div
         aria-hidden
         className="absolute inset-0 bg-[url('/BG-MD.jpeg')] bg-cover bg-center bg-no-repeat"
