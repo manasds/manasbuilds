@@ -15,6 +15,8 @@ export const ProjectBox = ({
   content,
   url,
   src,
+  bg,
+  description
 }: projecttype) => {
   console.log(slug);
   return (
@@ -26,13 +28,21 @@ export const ProjectBox = ({
         <div className="h-full w-full bg-neutral-200 dark:bg-zinc-800 border border-neutral-300 dark:border-neutral-700 rounded-sm overflow-hidden relative">
           <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             <Image
-              src={src}
+              src={bg}
               alt="bg"
               fill
               className="object-cover object-center"
             />
           </div>
-          <div className="w-[80%] h-[75%] bg-black border-2 inset-x-0  border-white border-b-0 dark:border-black mx-auto  p-0.5 rounded-t-sm group-hover:h-[70%] transition-all duration-300 absolute bottom-0 pb-0"></div>
+          <div className="w-[80%] h-[75%] bg-black border-2 inset-x-0 border-white border-b-0 dark:border-black mx-auto p-0.5 rounded-t-sm group-hover:h-[70%] transition-all duration-300 absolute bottom-0 pb-0 overflow-hidden">
+            {src ? (
+              <img
+                src={src[0]}
+                alt={title}
+                className="block h-full w-full object-contain object-center"
+              />
+            ) : null}
+          </div>
         </div>
       </div>
       <div className="flex justify-between px-2 pr-5">
@@ -52,7 +62,7 @@ export const ProjectBox = ({
         )}
       </div>
       <p className="text-sm text-gray-500 dark:text-gray-400 tracking-tight max-w-lg px-2 ">
-        {content}
+        {description}
       </p>
       <div className="flex justify-between">
         <span className="text-neutral-500 text-sm px-2 flex gap-1.5 items-center dark:text-neutral-400">

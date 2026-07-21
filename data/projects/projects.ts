@@ -5,10 +5,12 @@ export type projecttype = {
   date?: string;
   status: "building" | "live";
   content: string;
+  description : string ;
   url: string;
   github?: string;
-  src: string;
-  images? : string[] ; 
+  src?: string[];
+  bg: string;
+  images?: string[];
 };
 // available images in the public/images folder
 const images = [
@@ -25,34 +27,40 @@ const images = [
 export const projects: projecttype[] = [
   {
     id: 1,
-    title: "quicknote",
-    slug: "quicknote",
-    date: "2026-03-15",
-    status: "building",
-    content: "take notes directly from browser to your obsidian vault",
-    url: "https://github.com/manasds",
-    src: "/images/bg8.png",
-  },
-  {
-    id: 2,
     title: "Flint",
     slug: "flint",
     date: "2026-07-09",
     status: "live",
-    content: "nothing" , 
+    description :"Share file peer to peer without any login , signup or uploads" ,
+    content: "Share file peer to peer without any login , signup or uploads , just drag and drop and share the link via Qr and you are done!!",
     url: "https://flint.manasbuilds.me",
     github: "https://github.com/manasds/flint",
-    src: "/images/bg2.jpg",
+    bg: "/images/bg2.jpg",
+    src : ["/flint.png" , "/flint-2.png"]
   },
   {
-    id: 3,
+    id: 2,
     title: "image-resizer",
     slug: "image-resizer",
     date: "2026-07-12",
     status: "live",
     content: "resize yoour images easily now",
+    description : "resize yoour images easily now" ,
     url: "https://image-resize-md.vercel.app",
     github: "https://github.com/manasds/backend-stuff/src/job",
-    src: "/images/bg3.avif",
+    bg: "/images/bg3.avif",
+    src : ["/image-resize.png"]
+  },
+  {
+    id: 3,
+    title: "quicknote",
+    slug: "quicknote",
+    date: "2026-03-15",
+    status: "building",
+    content: "take notes directly from browser to your obsidian vault",
+    description : "take notes directly from browser to your obsidian vault" ,
+    url: "https://github.com/manasds",
+    bg: "/images/bg8.png",
+    
   },
 ];

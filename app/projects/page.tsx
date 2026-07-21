@@ -19,6 +19,8 @@ export default function Projects() {
               url={p.url}
               src={p.src}
               slug={p.slug}
+              bg={p.bg}
+              description={p.description}
             />
           ))}
         </div>
