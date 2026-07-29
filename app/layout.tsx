@@ -30,6 +30,7 @@ export const metadata: Metadata = {
     siteName: 'Manas Builds',
     locale: 'en_US',
     type: 'website',
+    images : [{url : "/manasbuildshome.png"}]
   },
   robots: {
     index: true,
