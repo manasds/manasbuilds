@@ -83,18 +83,22 @@ export default function RootLayout({
           <Nav />
           <main className="text-foreground">{children}</main>
         </ThemeProvider>
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-BN93LWZDMC"
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-BN93LWZDMC');
-  `}
-        </Script>
+        {process.env.NODE_ENV === "production" && (
+          <>
+            <Script
+              src="https://www.googletagmanager.com/gtag/js?id=G-BN93LWZDMC"
+              strategy="afterInteractive"
+            />
+            <Script id="google-analytics" strategy="afterInteractive">
+              {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-BN93LWZDMC');
+            `}
+            </Script>
+          </>
+        )}
       </body>
     </html>
   );
