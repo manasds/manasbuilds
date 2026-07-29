@@ -2,6 +2,8 @@ import { Container } from "./container";
 import { SocialLinks } from "./social-links";
 import { yap, tagline } from "@/lib/text";
 import Image from "next/image";
+import bgMd from "@/public/BG-MD.jpeg";
+
 export const Hero = () => {
   return (
     <Container className="relative z-10 overflow-hidden lg:rounded-xl py-3 md:py-8">
@@ -10,9 +12,11 @@ export const Hero = () => {
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
       >
         <Image
-          src="/BG-MD.jpeg"
-          alt="bg-md"
+          src={bgMd}
+          alt=""
           fill
+          priority
+          placeholder="blur"
           sizes="100vw"
           className="object-cover object-center"
         />
