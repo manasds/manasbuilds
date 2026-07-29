@@ -1,14 +1,22 @@
 import { Container } from "./container";
 import { SocialLinks } from "./social-links";
 import { yap, tagline } from "@/lib/text";
-
+import Image from "next/image";
 export const Hero = () => {
   return (
     <Container className="relative z-10 overflow-hidden lg:rounded-xl py-3 md:py-8">
       <div
         aria-hidden
-        className="absolute inset-0 bg-[url('/BG-MD.jpeg')] bg-cover bg-center bg-no-repeat"
-      />
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+      >
+        <Image
+          src="/BG-MD.jpeg"
+          alt="bg-md"
+          fill
+          sizes="100vw"
+          className="object-cover object-center"
+        />
+      </div>
       <div
         aria-hidden
         className="absolute inset-0 bg-black/30 dark:bg-black/45"
