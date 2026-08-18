@@ -179,17 +179,17 @@ export default async function PostPage({
       )}
       <h1 className="text-4xl font-semibold">{post.title}</h1>
       {/* manas */}
-      <div className="text-lg font-mono">
-        <p className="text-xs mt-4 mb-16">
-          Published: {new Date(post.publishedAt).toLocaleDateString()}
-        </p>
-        {Array.isArray(post.body) && (
+      <p className="mt-4 mb-16 font-mono text-xs">
+        Published: {new Date(post.publishedAt).toLocaleDateString()}
+      </p>
+      {Array.isArray(post.body) && (
+        <div className="prose max-w-none font-mono text-lg">
           <PortableText
             value={bodyWithHighlight}
             components={portableTextComponents}
           />
-        )}
-      </div>
+        </div>
+      )}
     </Container>
   );
 }
