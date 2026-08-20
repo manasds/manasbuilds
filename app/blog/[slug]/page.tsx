@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { PortableText, type SanityDocument } from "next-sanity";
 import { createImageUrlBuilder } from "@sanity/image-url";
 import type { SanityImageSource } from "@sanity/image-url";
@@ -152,11 +153,16 @@ export default async function PostPage({
 }: {
   params: Promise<{ slug: string }>;
 }) {
-  const post = await client.fetch<SanityDocument>(
+  const post = await client.fetch<SanityDocument | null>(
     POST_QUERY,
     await params,
     options,
   );
+
+  if (!post) {
+    notFound();
+  }
+
   const bodyWithHighlight = Array.isArray(post.body)
     ? await highlightCodeBlocks(post.body)
     : post.body;
