@@ -25,7 +25,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   pageExtensions: ["ts", "tsx", "mdx"],
-  allowedDevOrigins: ["10.142.155.125", "10.60.113.125"]
+  allowedDevOrigins: ["**.*"],
 };
 
-export default nextConfig ; 
+export default nextConfig;

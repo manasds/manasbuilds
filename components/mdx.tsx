@@ -99,7 +99,7 @@ const rehypePrettyCodeOptions: RehypePrettyCodeOptions = {
 
 export function CustomMDX({ source }: { source: string }) {
   return (
-    <div className="prose prose-neutral dark:prose-invert max-w-none text-lg ">
+    <div className="prose prose-neutral dark:prose-invert max-w-none text-lg">
       <MDXRemote
         source={source}
         components={mdxComponents}

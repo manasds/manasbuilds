@@ -70,11 +70,11 @@ const portableTextComponents = {
     }) =>
       value.highlightedCode ? (
         <div
-          className="my-6 overflow-x-auto rounded-xl border border-neutral-200/60 bg-neutral-900 p-4 text-sm dark:border-white/10 "
+          className="my-6 overflow-x-auto rounded-xl bg-neutral-900 text-sm dark:border-white/10"
           dangerouslySetInnerHTML={{ __html: value.highlightedCode }}
         />
       ) : (
-        <pre className="my-6 overflow-x-auto rounded-xl border border-neutral-200/60 bg-neutral-900 p-4 text-sm text-neutral-900 dark:border-white/10 dark:text-neutral-100">
+        <pre className="overflow-x-auto rounded-xl border border-neutral-200/60 bg-neutral-900 text-sm text-neutral-900 dark:border-white/10 dark:text-neutral-100">
           <code
             className={
               value.language ? `language-${value.language}` : undefined
@@ -163,7 +163,7 @@ export default async function PostPage({
   const postImageUrl = post.image ? urlFor(post.image)?.url() : null;
 
   return (
-    <Container className="max-w-3xl ">
+    <Container className="max-w-3xl">
       <Link href="/blog" className="hover:underline">
         ← Back to posts
       </Link>
@@ -172,7 +172,7 @@ export default async function PostPage({
           <img
             src={postImageUrl}
             alt={post.title}
-            className="rounded-xl w-80 h-auto"
+            className="h-auto w-80 rounded-xl"
             style={{ maxWidth: "100%" }}
           />
         </div>
@@ -183,7 +183,7 @@ export default async function PostPage({
         Published: {new Date(post.publishedAt).toLocaleDateString()}
       </p>
       {Array.isArray(post.body) && (
-        <div className="prose max-w-none font-mono text-lg">
+        <div className="prose max-w-none font-mono text-base text-neutral-900 dark:text-neutral-300">
           <PortableText
             value={bodyWithHighlight}
             components={portableTextComponents}
