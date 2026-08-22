@@ -64,7 +64,7 @@ export default function Contact() {
               </Link>
             </span>
           </div>
-          <div className="overflow-x-auto rounded-lg border border-neutral-200 dark:border-neutral-800 p-4">
+          <div className="hide-calendar-scrollbar overflow-x-auto rounded-lg border border-neutral-200 p-4 dark:border-neutral-800">
             <GithubHeatmap username={GITHUB_USERNAME} />
           </div>
         </div>

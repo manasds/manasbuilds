@@ -183,7 +183,7 @@ export default async function PostPage({
         Published: {new Date(post.publishedAt).toLocaleDateString()}
       </p>
       {Array.isArray(post.body) && (
-        <div className="prose max-w-none font-mono text-base text-neutral-900 dark:text-neutral-300">
+        <div className="prose max-w-none font-mono text-base text-neutral-900 dark:text-neutral-200">
           <PortableText
             value={bodyWithHighlight}
             components={portableTextComponents}
