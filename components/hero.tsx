@@ -34,7 +34,7 @@ export const Hero = () => {
             {tagline}
           </p>
         </div>
-        <SocialLinks className="[&_a]:border-white/35 [&_a]:text-white/90 [&_a:hover]:text-white [&_a:hover]:border-white/55" />
+        <SocialLinks className="[&_a]:border-white/35 [&_a]:text-white/90 [&_a:hover]:text-white [&_a:hover]:border-white/55 dark:[&_a]:border-white/35 dark:[&_a]:text-white/90" />
       </div>
     </Container>
   );

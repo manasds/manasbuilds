@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Calendar, Github } from "lucide-react";
 import { socialLinks } from "@/lib/social";
 import { cn } from "@/lib/utils";
+import { NotionIcon } from "./contact/notion-svg";
 
 const icons: Record<string, React.ReactNode> = {
   GitHub: <Github className="size-4" />,
@@ -15,6 +16,7 @@ const icons: Record<string, React.ReactNode> = {
     </svg>
   ),
   "Cal.com": <Calendar className="size-4" />,
+  Notion : <NotionIcon className="size-4 [&>path:first-child]:fill-white! [&>path:last-child]:fill-black! " />
 };
 
 export function SocialLinks({ className }: { className?: string }) {

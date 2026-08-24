@@ -4,7 +4,7 @@ import { socialLinks } from "@/lib/social";
 import { Calendar, Github, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import React from "react";
-
+import { NotionIcon } from "@/components/contact/notion-svg";
 const GITHUB_USERNAME = "manasds";
 
 const icons: Record<string, React.ReactNode> = {
@@ -15,11 +15,12 @@ const icons: Record<string, React.ReactNode> = {
     </svg>
   ),
   "Cal.com": <Calendar className="size-5" />,
+  "Notion" : <NotionIcon className="size-5" />
 };
 
 export default function Contact() {
   return (
-    <Container className="pt-16 pb-24">
+    <Container className="pt-16 pb-24 ">
       <div className="max-w-2xl space-y-10">
         <div className="space-y-3">
           <h1 className="text-2xl md:text-3xl font-mono font-medium">
@@ -31,7 +32,7 @@ export default function Contact() {
           </p>
         </div>
 
-        <div className="flex flex-col gap-3">
+        <div className="grid grid-cols-2 gap-4">
           {socialLinks.map((link) => (
             <Link
               key={link.name}
