@@ -1,3 +1,4 @@
+"use client"
 import { Container } from "@/components/container";
 import { GithubHeatmap } from "@/components/github-heatmap";
 import { socialLinks } from "@/lib/social";
@@ -15,7 +16,7 @@ const icons: Record<string, React.ReactNode> = {
     </svg>
   ),
   "Cal.com": <Calendar className="size-5" />,
-  "Notion" : <NotionIcon className="size-5" />
+  "Notion": <NotionIcon className="size-5" />
 };
 
 export default function Contact() {
