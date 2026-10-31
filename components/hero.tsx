@@ -27,9 +27,9 @@ export const Hero = () => {
       />
       <div className="relative z-10 max-w-2xl space-y-3 md:space-y-4">
         <div className="space-y-1">
-          <p className="text-lg md:text-xl font-mono font-medium text-white drop-shadow-sm">
+          <h1 className="text-lg md:text-xl font-mono font-medium text-white drop-shadow-sm">
             {yap}
-          </p>
+          </h1>
           <p className="text-sm md:text-base text-white/85 leading-relaxed drop-shadow-sm">
             {tagline}
           </p>

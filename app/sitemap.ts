@@ -1,4 +1,6 @@
 import { getAllPosts } from "@/lib/blog";
+import { siteConfig } from "@/lib/site";
+import { projects } from "@/data/projects/projects";
 import { client } from "@/sanity/client";
 import { MetadataRoute } from "next";
 import { SanityDocument } from "next-sanity";
@@ -6,61 +8,79 @@ import { SanityDocument } from "next-sanity";
 const POSTS_QUERY = `*[
   _type == "post"
   && defined(slug.current)
-]|order(publishedAt desc)[0...12]{_id, description, title, "slug": slug.current, publishedAt}`;
+]|order(publishedAt desc){_id, "slug": slug.current, publishedAt, _updatedAt}`;
 
 const options = { next: { revalidate: 30 } };
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = "https://manasbuilds.me";
+  const baseUrl = siteConfig.url;
 
   const posts = await client.fetch<SanityDocument[]>(POSTS_QUERY, {}, options);
+  const mdxPosts = getAllPosts();
   const latestBlogDate = posts.length
     ? new Date(
         Math.max(
-          ...posts.map((p) => new Date(p.publishedAt).getTime()),
+          ...posts.map((p) => new Date(p._updatedAt ?? p.publishedAt).getTime()),
         ),
       ).toISOString()
-    : new Date().toISOString();
+    : undefined;
 
-  const routes = [
+  // Static pages have no reliable "last modified" date, so it is left out
+  // rather than claiming they change on every build.
+  const routes: MetadataRoute.Sitemap = [
     {
       url: baseUrl,
       lastModified: latestBlogDate,
-      changeFrequency: "weekly" as const,
+      changeFrequency: "weekly",
       priority: 1.0,
     },
     {
       url: `${baseUrl}/blog`,
       lastModified: latestBlogDate,
-      changeFrequency: "weekly" as const,
+      changeFrequency: "weekly",
       priority: 0.9,
     },
     {
+      url: `${baseUrl}/blogs`,
+      changeFrequency: "monthly",
+      priority: 0.6,
+    },
+    {
       url: `${baseUrl}/projects`,
-      lastModified: new Date().toISOString(),
-      changeFrequency: "weekly" as const,
+      changeFrequency: "monthly",
       priority: 0.8,
     },
     {
       url: `${baseUrl}/learning`,
-      lastModified: new Date().toISOString(),
-      changeFrequency: "monthly" as const,
-      priority: 0.8,
+      changeFrequency: "monthly",
+      priority: 0.6,
     },
     {
       url: `${baseUrl}/contact`,
-      lastModified: new Date().toISOString(),
-      changeFrequency: "weekly" as const,
+      changeFrequency: "yearly",
       priority: 0.5,
     },
   ];
 
-  const blogEntries = posts.map((post) => ({
+  const blogEntries: MetadataRoute.Sitemap = posts.map((post) => ({
     url: `${baseUrl}/blog/${post.slug}`,
-    lastModified: new Date(post.publishedAt).toISOString(),
-    changeFrequency: "yearly" as const,
+    lastModified: new Date(post._updatedAt ?? post.publishedAt).toISOString(),
+    changeFrequency: "yearly",
     priority: 0.7,
   }));
 
-  return [...routes, ...blogEntries];
+  const mdxEntries: MetadataRoute.Sitemap = mdxPosts.map((post) => ({
+    url: `${baseUrl}/blogs/${post.slug}`,
+    lastModified: new Date(post.metadata.publishedAt).toISOString(),
+    changeFrequency: "yearly",
+    priority: 0.6,
+  }));
+
+  const projectEntries: MetadataRoute.Sitemap = projects.map((project) => ({
+    url: `${baseUrl}/projects/${project.slug}`,
+    changeFrequency: "monthly",
+    priority: 0.7,
+  }));
+
+  return [...routes, ...blogEntries, ...mdxEntries, ...projectEntries];
 }

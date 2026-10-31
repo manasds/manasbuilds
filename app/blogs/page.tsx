@@ -3,9 +3,10 @@ import Link from "next/link";
 import { getAllPosts } from "@/lib/blog";
 import { Separator } from "@/components/ui/separator";
 export const metadata = {
-  title: "Blog | Manas Builds",
+  title: "Writings",
   description:
     "Writing about web development, side projects, and things I am learning.",
+  alternates: { canonical: "/blogs" },
 };
 
 export default function BlogIndexPage() {

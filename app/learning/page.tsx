@@ -2,6 +2,15 @@ import { Container } from "@/components/container";
 import Folder from "@/components/learning/folder";
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Learning",
+  description:
+    "Manas's knowledge base and UI experiments: notes kept in Notion and small components built with Tailwind and Motion.",
+  alternates: { canonical: "/learning" },
+};
+
 export default function Page() {
   return (
     <div className="h-full min-h-screen">

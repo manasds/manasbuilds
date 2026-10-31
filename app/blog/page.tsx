@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { type SanityDocument } from "next-sanity";
 
@@ -13,6 +14,13 @@ const POSTS_QUERY = `*[
 ]|order(publishedAt desc)[0...12]{_id, description, title, slug, publishedAt}`;
 
 const options = { next: { revalidate: 30 } };
+
+export const metadata: Metadata = {
+  title: "Blog",
+  description:
+    "Blog posts by Manas on TypeScript, WebRTC, and notes on building and learning along the way.",
+  alternates: { canonical: "/blog" },
+};
 
 export default async function IndexPage() {
   const posts = await client.fetch<SanityDocument[]>(POSTS_QUERY, {}, options);

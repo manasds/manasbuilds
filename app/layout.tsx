@@ -5,6 +5,7 @@ import { Nav } from "../components/nav";
 import { VideoBackground } from "../components/VideoBackground";
 import { ThemeProvider } from "../providers/themeprovider";
 import Script from "next/script";
+import { siteConfig } from "@/lib/site";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,22 +24,25 @@ const spaceMono = Space_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://manasbuilds.me"),
+  metadataBase: new URL(siteConfig.url),
   title: {
-    default: "Manas - Full Stack Developer",
+    default: siteConfig.title,
     template: "%s | Manas",
   },
-  description:
-    "Hey this is manas, I love learning about engineering and tech, and also building for it ",
+  description: siteConfig.description,
+  // No canonical here: it would be inherited by every page. Pages set their own.
+  alternates: {
+    types: { "text/plain": "/llms.txt" },
+  },
   openGraph: {
-    title: "Manas | Full-Stack Developer",
-    description: "Building modern, type-safe web applications.",
-    url: "https://manasbuilds.me",
-    siteName: "Manas Builds",
+    title: siteConfig.title,
+    description: siteConfig.description,
+    url: siteConfig.url,
+    siteName: siteConfig.name,
     locale: "en_US",
     type: "website",
     images: [
-      { url: "/manasbuildshome.png", alt: "manas builds portfolio homepage" },
+      { url: siteConfig.ogImage, alt: "manas builds portfolio homepage" },
     ],
   },
   robots: {
@@ -53,13 +57,12 @@ export const metadata: Metadata = {
     },
   },
   twitter: {
-    title: "manas",
+    title: siteConfig.title,
     card: "summary_large_image",
-    creator: "@manastwts",
-    site: "@manastwts",
-    description:
-      "Full Stack Developer specializing in React, Next.js, TypeScript & Node.js.",
-    images: ["/manasbuildshome.png"],
+    creator: siteConfig.twitter,
+    site: siteConfig.twitter,
+    description: siteConfig.description,
+    images: [siteConfig.ogImage],
   },
 };
 

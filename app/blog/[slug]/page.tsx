@@ -6,6 +6,8 @@ import { codeToHtml } from "shiki";
 import { client } from "@/sanity/client";
 import Link from "next/link";
 import { Container } from "@/components/container";
+import { JsonLd } from "@/components/json-ld";
+import { siteConfig, absoluteUrl } from "@/lib/site";
 
 const POST_QUERY = `*[_type == "post" && slug.current == $slug][0]{
   _id, title, slug, publishedAt, body, image, description
@@ -119,12 +121,11 @@ export async function generateMetadata({
 
   if (!post) return {};
 
-  const baseUrl = "https://manasbuilds.me";
-  const url = `${baseUrl}/blog/${slug}`;
+  const url = absoluteUrl(`/blog/${slug}`);
   const imageUrl = post.image
     ? (urlFor(post.image)?.width(1200).height(630).url() ??
-      `${baseUrl}/og-blog-default.png`)
-    : `${baseUrl}/og-blog-default.png`;
+      absoluteUrl(siteConfig.ogImage))
+    : absoluteUrl(siteConfig.ogImage);
 
   return {
     title: post.title,
@@ -161,9 +162,22 @@ export default async function PostPage({
     ? await highlightCodeBlocks(post.body)
     : post.body;
   const postImageUrl = post.image ? urlFor(post.image)?.url() : null;
+  const url = absoluteUrl(`/blog/${post.slug?.current}`);
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.description,
+    datePublished: post.publishedAt,
+    url,
+    mainEntityOfPage: url,
+    image: postImageUrl ?? absoluteUrl(siteConfig.ogImage),
+    author: { "@type": "Person", name: siteConfig.author, url: siteConfig.url },
+  };
 
   return (
     <Container className="max-w-3xl">
+      <JsonLd data={jsonLd} />
       <Link href="/blog" className="hover:underline">
         ← Back to posts
       </Link>

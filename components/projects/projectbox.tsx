@@ -41,18 +41,18 @@ export const ProjectBox = ({
         </div>
       </div>
       <div className="flex justify-between px-2 pr-5">
-        <h1 className="font-semibold text-black text-lg dark:text-neutral-50">
+        <h3 className="font-semibold text-black text-lg dark:text-neutral-50">
           {title}
-        </h1>
+        </h3>
         {status === "building" ? (
           <div className="flex items-center gap-2 ">
             <div className="size-2 rounded-full bg-red-500 animate-pulse"></div>
-            <h1 className="text-sm font-semibold text-gray-500">Building</h1>
+            <span className="text-sm font-semibold text-gray-500">Building</span>
           </div>
         ) : (
           <div className="flex justify-between items-center gap-2 ">
             <div className="size-2 rounded-full bg-green-500 animate-pulse"></div>
-            <h1 className="text-sm font-semibold text-gray-500">Live</h1>
+            <span className="text-sm font-semibold text-gray-500">Live</span>
           </div>
         )}
       </div>

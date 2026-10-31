@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import { Container } from "../../../components/container";
 import { CustomMDX } from "@/components/mdx";
 import { getAllSlugs, getPostBySlug } from "@/lib/blog";
+import { JsonLd } from "@/components/json-ld";
+import { siteConfig, absoluteUrl } from "@/lib/site";
 
 type BlogPageParams = {
   slug: string;
@@ -28,9 +30,8 @@ export async function generateMetadata({
 
   const { title, summary, publishedAt, ogImage } = post.metadata;
 
-  const baseUrl = "https://manasbuilds.me";
-  const url = `${baseUrl}/blogs/${post.slug}`;
-  const image = ogImage ?? `${baseUrl}/og-blog-default.png`;
+  const url = absoluteUrl(`/blogs/${post.slug}`);
+  const image = ogImage ?? absoluteUrl(siteConfig.ogImage);
 
   return {
     title,
@@ -75,8 +76,23 @@ export default async function BlogPostPage({
     year: "numeric",
   });
 
+  const url = absoluteUrl(`/blogs/${post.slug}`);
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.metadata.title,
+    description: post.metadata.summary,
+    datePublished: post.metadata.publishedAt,
+    url,
+    mainEntityOfPage: url,
+    image: post.metadata.ogImage ?? absoluteUrl(siteConfig.ogImage),
+    keywords: post.metadata.tags,
+    author: { "@type": "Person", name: siteConfig.author, url: siteConfig.url },
+  };
+
   return (
     <div className="min-h-screen relative font-mono">
+      <JsonLd data={jsonLd} />
       <Container className="relative z-10 pt-16 max-w-3xl mx-auto pb-16">
         <article>
           <header className="mb-8">
