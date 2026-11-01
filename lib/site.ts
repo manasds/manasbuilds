@@ -8,8 +8,7 @@ export const siteConfig = {
   author: "Manas Dubey",
   url: "https://www.manasbuilds.me",
   title: "Manas - Full Stack Developer",
-  description:
-    "Manas is a full-stack developer building web apps and side projects with React, Next.js, TypeScript and Node.js, and writing about the process.",
+  description: "I love building stuff and curious to dive into it" ,
   twitter: "@manastwts",
   ogImage: "/manasbuildshome.png",
   sameAs: socialLinks.map((link) => link.href),
