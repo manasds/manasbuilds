@@ -2,6 +2,7 @@ import { Container } from "@/components/container";
 import { projects } from "@/data/projects/projects";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import Image from "next/image";
 
 export async function generateStaticParams() {
   return projects.map((project) => ({
@@ -49,12 +50,16 @@ export default async function ProjectPage({
           {project.title}
         </h1>
         <div className="flex gap-4">
-          {project.src?.map((img) => (
-            <img
+          {project.src?.map((img, i) => (
+            <Image
               key={img}
               src={img}
-              alt=""
-              className="block max-h-64 w-auto object-contain"
+              alt={`${project.title} screenshot ${i + 1}`}
+              width={0}
+              height={0}
+              sizes="(max-width: 768px) 100vw, 480px"
+              preload={i === 0}
+              className="block h-64 w-auto object-contain"
             />
           ))}
         </div>

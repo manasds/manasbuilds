@@ -20,7 +20,7 @@ const images = [
   "bg4.png",
   "bg6.png",
   "bg9.png",
-  "bg8.png",
+  "bg8.webp",
   "bg10.png",
 ];
 
@@ -36,7 +36,7 @@ export const projects: projecttype[] = [
     url: "https://flint.manasbuilds.me",
     github: "https://github.com/manasds/flint",
     bg: "/images/bg2.jpg",
-    src : ["/flint.png" , "/flint-2.png"]
+    src : ["/flint.webp" , "/flint-2.webp"]
   },
   {
     id: 2,
@@ -49,7 +49,7 @@ export const projects: projecttype[] = [
     url: "https://image-resize-md.vercel.app",
     github: "https://github.com/manasds/backend-stuff/src/job",
     bg: "/images/bg3.avif",
-    src : ["/image-resize.png"]
+    src : ["/image-resize.webp"]
   },
   {
     id: 3,
@@ -60,7 +60,7 @@ export const projects: projecttype[] = [
     content: "take notes directly from browser to your obsidian vault",
     description : "take notes directly from browser to your obsidian vault" ,
     url: "https://github.com/manasds",
-    bg: "/images/bg8.png",
+    bg: "/images/bg8.webp",
     
   },
 ];

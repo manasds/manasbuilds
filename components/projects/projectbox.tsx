@@ -24,18 +24,23 @@ export const ProjectBox = ({
           <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
             <Image
               src={bg}
-              alt="bg"
+              alt=""
               fill
+              sizes="336px"
               className="object-cover object-center"
             />
           </div>
           <div className="w-[80%] h-[75%] bg-black border-2 inset-x-0 border-white border-b-0 dark:border-black mx-auto p-0.5 rounded-t-sm group-hover:h-[70%] transition-all duration-300 absolute bottom-0 pb-0 overflow-hidden">
             {src ? (
-              <img
-                src={src[0]}
-                alt={title}
-                className="block h-full w-full object-contain object-center"
-              />
+              <div className="relative h-full w-full">
+                <Image
+                  src={src[0]}
+                  alt={title}
+                  fill
+                  sizes="272px"
+                  className="object-contain object-center"
+                />
+              </div>
             ) : null}
           </div>
         </div>

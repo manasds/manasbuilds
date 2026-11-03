@@ -2,7 +2,7 @@ import { Container } from "./container";
 import { SocialLinks } from "./social-links";
 import { yap, tagline } from "@/lib/text";
 import Image from "next/image";
-import bgMd from "@/public/BG-MD.jpeg";
+import bgMd from "@/public/BG-MD.webp";
 
 export const Hero = () => {
   return (
@@ -15,7 +15,7 @@ export const Hero = () => {
           src={bgMd}
           alt=""
           fill
-          priority
+          preload
           placeholder="blur"
           sizes="100vw"
           className="object-cover object-center"

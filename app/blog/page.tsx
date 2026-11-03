@@ -24,7 +24,6 @@ export const metadata: Metadata = {
 
 export default async function IndexPage() {
   const posts = await client.fetch<SanityDocument[]>(POSTS_QUERY, {}, options);
-  console.log(posts);
   return (
     <div className="min-h-screen relative font-mono">
       <Container className="relative z-10 pt-16 max-w-3xl mx-auto pb-16">
@@ -37,8 +36,8 @@ export default async function IndexPage() {
 
         <section className="space-y-4">
           {posts.map((post) => (
-            <div className="py-4 relative">
-              <Link  href={`/blog/${post.slug.current}`}  key={post._id} className="space-y-1">
+            <div key={post._id} className="py-4 relative">
+              <Link href={`/blog/${post.slug.current}`} className="space-y-1">
                 <h2 className="text-lg font-medium hover:underline underline-offset-4">
                     {post.title}
                 </h2>

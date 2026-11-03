@@ -87,7 +87,7 @@ const portableTextComponents = {
         </pre>
       ),
     image: ({ value }: { value: SanityImageSource & { alt?: string } }) => {
-      const imageUrl = urlFor(value)?.width(1200).url();
+      const imageUrl = urlFor(value)?.width(1200).auto("format").quality(75).url();
       if (!imageUrl) return null;
       return (
         <div className="my-6 flex justify-center">
@@ -161,7 +161,10 @@ export default async function PostPage({
   const bodyWithHighlight = Array.isArray(post.body)
     ? await highlightCodeBlocks(post.body)
     : post.body;
-  const postImageUrl = post.image ? urlFor(post.image)?.url() : null;
+  // Rendered at 320px wide; 640 covers 2x screens. Sanity serves AVIF/WebP via auto("format").
+  const postImageUrl = post.image
+    ? urlFor(post.image)?.width(640).auto("format").quality(75).url()
+    : null;
   const url = absoluteUrl(`/blog/${post.slug?.current}`);
   const jsonLd = {
     "@context": "https://schema.org",

@@ -10,7 +10,7 @@ export const siteConfig = {
   title: "Manas - Full Stack Developer",
   description: "I love building stuff and curious to dive into it" ,
   twitter: "@manastwts",
-  ogImage: "/manasbuildshome.png",
+  ogImage: "/og.jpg",
   sameAs: socialLinks.map((link) => link.href),
 };
 

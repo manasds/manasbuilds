@@ -24,11 +24,15 @@ import type { NextConfig } from "next";
 // });
 
 const nextConfig: NextConfig = {
-  images : {
-    domains : [
-        "api.microlink.io"
-    ]
-  } , 
+  images: {
+    // AVIF first (smallest), WebP fallback for browsers without AVIF.
+    formats: ["image/avif", "image/webp"],
+    qualities: [75],
+    remotePatterns: [
+      new URL("https://api.microlink.io/**"),
+      new URL("https://cdn.sanity.io/images/**"),
+    ],
+  },
   pageExtensions: ["ts", "tsx", "mdx"],
   allowedDevOrigins: ["**.*"],
 };

@@ -1,7 +1,6 @@
 "use client";
 import Image from "next/image";
-import { motion, scale, Variant, Variants } from "motion/react";
-import { initialize } from "next/dist/server/lib/render-server";
+import { motion, Variants } from "motion/react";
 
 export default function Folder() {
   type cardtype = {
@@ -95,7 +94,7 @@ export default function Folder() {
               className="h-6 w-8 top-0 absolute rounded-md"
               style={{originY : "100%"}}
             >
-              <Image src={card.imageurl} fill alt="1" className="rounded-md"
+              <Image src={card.imageurl} fill alt="" sizes="48px" className="rounded-md"
               style={{objectFit : "cover"}} />
             </motion.div>
           ))}
