@@ -5,6 +5,7 @@ import Image from "next/image";
 import { projecttype } from "@/data/projects/projects";
 import Link from "next/link";
 import { DashedSeparator } from "../dashed-separator";
+import { useCanHover } from "@/hooks/use-can-hover";
 
 export const ProjectBox = ({
   id,
@@ -17,19 +18,22 @@ export const ProjectBox = ({
   bg,
   description
 }: projecttype) => {
+  const canHover = useCanHover();
   return (
     <div className="p-2 flex flex-col gap-1.5 max-w-84 min-w-72 group relative">
       <div className="h-52 border border-neutral-300 dark:border-neutral-700 rounded-md p-1">
         <div className="h-full w-full bg-neutral-200 dark:bg-zinc-800 border border-neutral-300 dark:border-neutral-700 rounded-sm overflow-hidden relative">
-          <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <Image
-              src={bg}
-              alt=""
-              fill
-              sizes="336px"
-              className="object-cover object-center"
-            />
-          </div>
+          {canHover && (
+            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <Image
+                src={bg}
+                alt=""
+                fill
+                sizes="336px"
+                className="object-cover object-center"
+              />
+            </div>
+          )}
           <div className="w-[80%] h-[75%] bg-black border-2 inset-x-0 border-white border-b-0 dark:border-black mx-auto p-0.5 rounded-t-sm group-hover:h-[70%] transition-all duration-300 absolute bottom-0 pb-0 overflow-hidden">
             {src ? (
               <div className="relative h-full w-full">

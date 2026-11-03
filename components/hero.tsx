@@ -15,7 +15,8 @@ export const Hero = () => {
           src={bgMd}
           alt=""
           fill
-          preload
+          loading="eager"
+          fetchPriority="high"
           placeholder="blur"
           sizes="100vw"
           className="object-cover object-center"

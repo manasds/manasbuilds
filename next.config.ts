@@ -25,8 +25,9 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
-    // AVIF first (smallest), WebP fallback for browsers without AVIF.
-    formats: ["image/avif", "image/webp"],
+    // WebP only: AVIF is smaller but slower to encode on a cold cache and to
+    // decode on low-end phones, which hurt mobile LCP.
+    formats: ["image/webp"],
     qualities: [75],
     remotePatterns: [
       new URL("https://cdn.sanity.io/images/**"),

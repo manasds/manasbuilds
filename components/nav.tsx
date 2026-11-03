@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import { Container } from "./container";
 import { PanelLeft, X } from "lucide-react";
 import ModeToggle from "./mode-toggle";
-import { CommandDialog } from "./ui/command";
 import { AnimatePresence, motion } from "motion/react";
 const navlinks = [
   { title: "Blog", href: "/blog" },
@@ -121,7 +120,6 @@ export const DesktopNavbar = () => {
         ))}
       </div>
       <div className="flex items-center gap-4">
-        <CommandDialog />
         <ModeToggle />
       </div>
     </Container>
