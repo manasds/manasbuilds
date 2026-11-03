@@ -12,18 +12,6 @@ export type projecttype = {
   bg: string;
   images?: string[];
 };
-// available images in the public/images folder
-const images = [
-  "bg1.avif",
-  "bg2.jpg",
-  "bg3.avif",
-  "bg4.png",
-  "bg6.png",
-  "bg9.png",
-  "bg8.webp",
-  "bg10.png",
-];
-
 export const projects: projecttype[] = [
   {
     id: 1,

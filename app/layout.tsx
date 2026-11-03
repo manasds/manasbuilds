@@ -36,7 +36,12 @@ export const metadata: Metadata = {
     locale: "en_US",
     type: "website",
     images: [
-      { url: siteConfig.ogImage, alt: "manas builds portfolio homepage" },
+      {
+        url: siteConfig.ogImage,
+        width: 1200,
+        height: 630,
+        alt: "manas builds portfolio homepage",
+      },
     ],
   },
   robots: {
@@ -84,9 +89,9 @@ export default function RootLayout({
           <>
             <Script
               src="https://www.googletagmanager.com/gtag/js?id=G-BN93LWZDMC"
-              strategy="afterInteractive"
+              strategy="lazyOnload"
             />
-            <Script id="google-analytics" strategy="afterInteractive">
+            <Script id="google-analytics" strategy="lazyOnload">
               {`
               window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}

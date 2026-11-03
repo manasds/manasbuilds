@@ -29,7 +29,6 @@ const nextConfig: NextConfig = {
     formats: ["image/avif", "image/webp"],
     qualities: [75],
     remotePatterns: [
-      new URL("https://api.microlink.io/**"),
       new URL("https://cdn.sanity.io/images/**"),
     ],
   },
