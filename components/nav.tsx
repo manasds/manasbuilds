@@ -2,7 +2,6 @@
 import Link from "next/link";
 import React, { useState } from "react";
 import { Container } from "./container";
-import { Button } from "./ui/button";
 import { PanelLeft, X } from "lucide-react";
 import ModeToggle from "./mode-toggle";
 import { CommandDialog } from "./ui/command";
@@ -29,13 +28,18 @@ export const MobileNavbar = () => {
       <Link
         href={"/"}
         className="size-4 rounded-full flex justify-center items-center"
+        aria-label="Home"
       >
         M
       </Link>
       <div className="flex gap-2">
         <ModeToggle />
-        <button onClick={() => setopen(!open)}>
-          <PanelLeft className="size-5" />
+        <button
+          onClick={() => setopen(!open)}
+          aria-label="Open menu"
+          aria-expanded={open}
+        >
+          <PanelLeft className="size-5" aria-hidden />
         </button>
       </div>
       <AnimatePresence>
@@ -60,11 +64,12 @@ export const MobileNavbar = () => {
                   href="/"
                   onClick={() => setopen(false)}
                   className="size-4 rounded-full flex justify-center items-center"
+                  aria-label="Home"
                 >
                   M
                 </Link>
-                <button onClick={() => setopen(false)}>
-                  <X className="h-8 dark:text-white " />
+                <button onClick={() => setopen(false)} aria-label="Close menu">
+                  <X className="h-8 dark:text-white " aria-hidden />
                 </button>
               </div>
               <div className="flex flex-col gap-6 my-10 px-4">
@@ -92,15 +97,6 @@ export const MobileNavbar = () => {
                   </motion.div>
                 ))}
               </div>
-            </div>
-            <div className="flex justify-end gap-6 px-4 pb-4">
-              <Button
-                variant="outline"
-                className="border border-neutral-300 dark:text-neutral-200  dark:border-neutral-700"
-              >
-                Login
-              </Button>
-              <Button>Signup</Button>
             </div>
           </motion.div>
         )}

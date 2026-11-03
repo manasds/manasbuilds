@@ -41,7 +41,7 @@ export default async function IndexPage() {
                 <h2 className="text-lg font-medium hover:underline underline-offset-4">
                     {post.title}
                 </h2>
-                <p className="text-sm text-neutral-400">{post.description}</p>
+                <p className="text-sm text-neutral-600 dark:text-neutral-400">{post.description}</p>
                 <p className="text-xs text-neutral-500 dark:text-neutral-500">
                   {new Date(post.publishedAt).toLocaleDateString("en-US", {
                     month: "long",
