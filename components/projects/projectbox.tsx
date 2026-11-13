@@ -75,6 +75,9 @@ export const ProjectBox = ({
         {status === "live" && (
           <a
             href={url}
+            data-track="project_live_clicked"
+            data-track-slug={slug}
+            data-track-location="card"
             target="_blank"
             rel="noopener noreferrer"
             className="relative z-20 pointer-events-auto text-neutral-500 text-sm px-2 flex gap-1.5 items-center dark:text-neutral-400"
@@ -91,6 +94,8 @@ export const ProjectBox = ({
       />
       <Link
         href={`/projects/${slug}`}
+        data-track="project_clicked"
+        data-track-slug={slug}
         className="absolute inset-0 z-10"
         aria-label={`View ${title} project`}
       />

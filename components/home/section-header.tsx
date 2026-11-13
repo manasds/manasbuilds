@@ -26,6 +26,8 @@ export function SectionHeader({
       </div>
       <Link
         href={href}
+        data-track="view_all_clicked"
+        data-track-section={title}
         className="shrink-0 text-sm text-neutral-600 dark:text-neutral-400 hover:text-foreground inline-flex items-center gap-1 transition-colors"
       >
         {linkLabel}

@@ -2,6 +2,7 @@
 import { useTheme } from "next-themes";
 import React, { useEffect, useState } from "react";
 import { SunIcon, MoonIcon } from "lucide-react";
+import { track, setThemeProperty } from "@/lib/analytics";
 
 const ModeToggle = () => {
   const { setTheme, resolvedTheme } = useTheme();
@@ -12,7 +13,10 @@ const ModeToggle = () => {
   }, []);
 
   const toggleTheme = () => {
-    setTheme(resolvedTheme === "light" ? "dark" : "light");
+    const next = resolvedTheme === "light" ? "dark" : "light";
+    setTheme(next);
+    setThemeProperty(next);
+    track("theme_toggled", { to: next });
   };
 
   if (!mounted) return <div className="size-8" />;

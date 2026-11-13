@@ -5,6 +5,7 @@ import { CustomMDX } from "@/components/mdx";
 import { getAllSlugs, getPostBySlug } from "@/lib/blog";
 import { JsonLd } from "@/components/json-ld";
 import { siteConfig, absoluteUrl } from "@/lib/site";
+import { BlogReadTracker } from "@/components/blog-read-tracker";
 
 type BlogPageParams = {
   slug: string;
@@ -94,7 +95,13 @@ export default async function BlogPostPage({
     <div className="min-h-screen relative font-mono">
       <JsonLd data={jsonLd} />
       <Container className="relative z-10 pt-16 max-w-3xl mx-auto pb-16">
-        <article>
+        <BlogReadTracker
+          slug={post.slug}
+          title={post.metadata.title}
+          source="mdx"
+          readingMinutes={parseInt(post.readingTime, 10) || undefined}
+        />
+        <article data-blog-article>
           <header className="mb-8">
             <p className="text-xs text-neutral-500 dark:text-neutral-500 mb-1">
               {formattedDate} · {post.readingTime}

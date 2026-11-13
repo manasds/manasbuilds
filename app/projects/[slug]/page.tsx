@@ -69,12 +69,17 @@ export default async function ProjectPage({
         <a
           className="text-sm text-neutral-800 dark:text-neutral-100  underline underline-offset-5 hover:scale-105 active:scale-100"
           href={project.github}
+          data-track="project_repo_clicked"
+          data-track-slug={slug}
         >
           View Repo
         </a>
         <a
           className="text-sm text-neutral-800 dark:text-neutral-100 hover:text-blue-70 underline underline-offset-5 hover:scale-105 active:scale-100"
           href={project.url}
+          data-track="project_live_clicked"
+          data-track-slug={slug}
+          data-track-location="detail"
         >
           View Live
         </a>

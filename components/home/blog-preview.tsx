@@ -22,10 +22,14 @@ export async function BlogPreview() {
         href="/blog"
       />
       <div className="space-y-4">
-        {posts.map((post) => (
+        {posts.map((post, i) => (
           <div key={post._id} className="py-4 relative">
             <Link
               href={`/blog/${post.slug.current}`}
+              data-track="blog_post_clicked"
+              data-track-slug={post.slug.current}
+              data-track-position={String(i + 1)}
+              data-track-location="home"
               className="space-y-1 block"
             >
               <h3 className="text-lg font-medium hover:underline underline-offset-4">

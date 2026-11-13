@@ -29,6 +29,9 @@ export function SocialLinks({ className }: { className?: string }) {
           target="_blank"
           rel="noopener noreferrer"
           aria-label={link.name}
+          data-track="social_clicked"
+          data-track-platform={link.name}
+          data-track-location="hero"
           className="inline-flex items-center justify-center size-9 rounded-md border border-neutral-300 dark:border-neutral-700 text-neutral-600 dark:text-neutral-400 hover:text-foreground hover:border-neutral-400 dark:hover:border-neutral-500 transition-colors"
         >
           {icons[link.name]}

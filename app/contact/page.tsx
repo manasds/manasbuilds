@@ -40,6 +40,9 @@ export default function Contact() {
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
+              data-track="social_clicked"
+              data-track-platform={link.name}
+              data-track-location="contact"
               className="group flex items-center justify-between rounded-lg border border-neutral-200 dark:border-neutral-800 px-4 py-3 transition-colors hover:border-neutral-400 dark:hover:border-neutral-600"
             >
               <span className="flex items-center gap-3 text-neutral-700 dark:text-neutral-300 group-hover:text-foreground">

@@ -37,7 +37,13 @@ export default async function IndexPage() {
         <section className="space-y-4">
           {posts.map((post) => (
             <div key={post._id} className="py-4 relative">
-              <Link href={`/blog/${post.slug.current}`} className="space-y-1">
+              <Link
+                href={`/blog/${post.slug.current}`}
+                className="space-y-1"
+                data-track="blog_post_clicked"
+                data-track-slug={post.slug.current}
+                data-track-location="blog_index"
+              >
                 <h2 className="text-lg font-medium hover:underline underline-offset-4">
                     {post.title}
                 </h2>

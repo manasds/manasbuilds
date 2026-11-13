@@ -5,6 +5,7 @@ import { Container } from "./container";
 import { PanelLeft, X } from "lucide-react";
 import ModeToggle from "./mode-toggle";
 import { AnimatePresence, motion } from "motion/react";
+import { track } from "@/lib/analytics";
 const navlinks = [
   { title: "Blog", href: "/blog" },
   { title: "Projects", href: "/projects" },
@@ -34,7 +35,10 @@ export const MobileNavbar = () => {
       <div className="flex gap-2">
         <ModeToggle />
         <button
-          onClick={() => setopen(!open)}
+          onClick={() => {
+            if (!open) track("mobile_menu_opened");
+            setopen(!open);
+          }}
           aria-label="Open menu"
           aria-expanded={open}
         >
@@ -90,6 +94,9 @@ export const MobileNavbar = () => {
                       className="text-sm text-neutral-600 dark:text-neutral-400 font-medium tracking-wide"
                       href={link.href}
                       onClick={() => setopen(false)}
+                      data-track="nav_clicked"
+                      data-track-label={link.title}
+                      data-track-location="mobile"
                     >
                       {link.title}
                     </Link>
@@ -114,6 +121,9 @@ export const DesktopNavbar = () => {
             key={link.title}
             className="text-sm text-neutral-600 dark:text-neutral-400 font-medium"
             href={link.href}
+            data-track="nav_clicked"
+            data-track-label={link.title}
+            data-track-location="desktop"
           >
             {link.title}
           </Link>

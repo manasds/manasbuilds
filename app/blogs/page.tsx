@@ -31,6 +31,9 @@ export default function BlogIndexPage() {
                 <h2 className="text-lg font-medium">
                   <Link
                     href={`/blogs/${post.slug}`}
+                    data-track="blog_post_clicked"
+                    data-track-slug={post.slug}
+                    data-track-location="blogs_index"
                     className="hover:underline underline-offset-4"
                   >
                     {post.metadata.title}

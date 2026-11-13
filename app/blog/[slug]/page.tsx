@@ -8,6 +8,8 @@ import Link from "next/link";
 import { Container } from "@/components/container";
 import { JsonLd } from "@/components/json-ld";
 import { siteConfig, absoluteUrl } from "@/lib/site";
+import { BlogReadTracker } from "@/components/blog-read-tracker";
+import readingTime from "reading-time";
 
 const POST_QUERY = `*[_type == "post" && slug.current == $slug][0]{
   _id, title, slug, publishedAt, body, image, description
@@ -102,6 +104,16 @@ const portableTextComponents = {
   },
 };
 
+function portableTextToPlain(blocks: unknown[]): string {
+  return blocks
+    .map((block) => {
+      const b = block as { _type?: string; children?: { text?: string }[]; code?: string };
+      if (b._type === "code") return b.code ?? "";
+      return (b.children ?? []).map((c) => c.text ?? "").join("");
+    })
+    .join("\n");
+}
+
 export async function generateStaticParams() {
   const slugs = await client.fetch(
     `*[_type == "post" && defined(slug.current)][].slug.current`,
@@ -166,6 +178,9 @@ export default async function PostPage({
     ? urlFor(post.image)?.width(640).auto("format").quality(75).url()
     : null;
   const url = absoluteUrl(`/blog/${post.slug?.current}`);
+  const readingMinutes = Array.isArray(post.body)
+    ? Math.max(1, Math.round(readingTime(portableTextToPlain(post.body)).minutes))
+    : undefined;
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
@@ -181,6 +196,12 @@ export default async function PostPage({
   return (
     <Container className="max-w-3xl">
       <JsonLd data={jsonLd} />
+      <BlogReadTracker
+        slug={post.slug?.current}
+        title={post.title}
+        source="sanity"
+        readingMinutes={readingMinutes}
+      />
       <Link href="/blog" className="hover:underline">
         ← Back to posts
       </Link>
@@ -200,7 +221,9 @@ export default async function PostPage({
         Published: {new Date(post.publishedAt).toLocaleDateString()}
       </p>
       {Array.isArray(post.body) && (
-        <div className="prose max-w-none font-mono text-base text-neutral-900 dark:text-neutral-200">
+        <div
+          data-blog-article
+          className="prose max-w-none font-mono text-base text-neutral-900 dark:text-neutral-200">
           <PortableText
             value={bodyWithHighlight}
             components={portableTextComponents}

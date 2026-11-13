@@ -4,7 +4,6 @@ import "./globals.css";
 import { Nav } from "../components/nav";
 import { VideoBackground } from "../components/VideoBackground";
 import { ThemeProvider } from "../providers/themeprovider";
-import Script from "next/script";
 import { siteConfig } from "@/lib/site";
 
 const geistSans = Geist({
@@ -85,22 +84,6 @@ export default function RootLayout({
           <Nav />
           <main className="text-foreground">{children}</main>
         </ThemeProvider>
-        {process.env.NODE_ENV === "production" && (
-          <>
-            <Script
-              src="https://www.googletagmanager.com/gtag/js?id=G-BN93LWZDMC"
-              strategy="lazyOnload"
-            />
-            <Script id="google-analytics" strategy="lazyOnload">
-              {`
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-BN93LWZDMC');
-            `}
-            </Script>
-          </>
-        )}
       </body>
     </html>
   );
